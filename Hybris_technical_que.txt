@@ -1,0 +1,178 @@
+**SAP Hybris (SAP Commerce Cloud) Interview Questions & Answers for Deloitte – Senior Consultant Role**
+
+---
+
+**SAP Hybris Technical Interview Questions (Developer Level)**
+
+---
+
+### 🔹 Basics & Architecture
+
+**Q1. What is SAP Hybris and how is it structured?**
+**A:** SAP Hybris is an eCommerce platform built on Java and Spring, offering solutions for B2B and B2C commerce. Its architecture includes the core platform, extensions, and customizable layers (facades, services, DAOs).
+
+**Q2. What are Hybris extensions and how are they structured?**
+**A:** Extensions are modular pieces of functionality. Each contains `resources`, `src`, `web`, `hmc`, and configuration files. You can generate custom extensions using `extgen`.
+
+**Q3. What is the role of the `items.xml` file?**
+**A:** Defines the data model. It includes items (models), their attributes, relations, and deployment behaviors.
+
+---
+
+### 🔹 Data Modeling & ImpEx
+
+**Q4. How do you define and deploy new item types in Hybris?**
+**A:** Define in `items.xml`, update `localextensions.xml`, run `ant all`, and update types via HAC.
+
+**Q5. What is an ImpEx? Where is it used?**
+**A:** ImpEx is a scripting language used for importing/exporting data. Used in data migrations, catalog setup, products, prices, and relations.
+
+---
+
+### 🔹 Spring & Dependency Injection
+
+**Q6. How is Spring used in Hybris?**
+**A:** Hybris uses Spring for dependency injection, configuration, and transaction management. Beans are declared in `*-spring.xml` files.
+
+**Q7. What are the layers in Hybris architecture?**
+**A:** Controller → Facade → Service → DAO. Promotes clean separation of concerns and testability.
+
+---
+
+### 🔹 FlexibleSearch & CronJobs
+
+**Q8. What is FlexibleSearch?**
+**A:** A powerful Hybris-specific SQL-like query language used to fetch data from the database.
+
+**Q9. How do you create and run a CronJob?**
+**A:** Create a `JobModel` and `CronJobModel`, implement a `Performable`, register it in Spring, and trigger via HAC/Backoffice.
+
+---
+
+### 🔹 WCMS & Backoffice
+
+**Q10. How do you customize a CMS component in Hybris?**
+**A:** Extend the CMS component model and renderer, register it in `items.xml` and Spring, and map it in `cmscockpit-spring.xml`.
+
+**Q11. What is SmartEdit and how is it different from CMS Cockpit?**
+**A:** SmartEdit is a modern UI-based CMS editor. CMS Cockpit is older and used for more technical/deep CMS operations.
+
+---
+
+### 🔹 Business Logic & Integration
+
+**Q12. How do you create a custom promotion or voucher?**
+**A:** Extend relevant rule models, write a custom rule condition or action, and deploy. Define logic in Drools rule engine.
+
+**Q13. How do you handle third-party integrations?**
+**A:** Use web services (REST/SOAP), strategies, Spring beans, and DTOs. Implement retry, error handling, and logging.
+
+**Q14. How do you manage configuration properties in Hybris?**
+**A:** Using `local.properties`, `project.properties`, and inject them via `Config.getParameter()` or Spring `${}`.
+
+---
+
+Let me know if you'd like PDF export or want to merge this with your Java question set!
+
+
+
+
+### Core Concepts & Architecture
+
+**Q1. What are the different layers in the Hybris architecture?**
+**A:** Hybris architecture consists of several layers:
+- **Presentation Layer:** JSPs, SmartEdit, WCMS components
+- **Business/Service Layer:** Contains business logic, services, and facades
+- **DAO Layer:** Direct interaction with the database using FlexibleSearch
+- **Persistence Layer:** Jalo or model-layer code with itemtypes.xml mapping
+- Each layer is loosely coupled and follows Spring dependency injection.
+
+**Q2. How do you define a new itemtype and generate its model class?**
+**A:**
+- Define the itemtype in the `items.xml`.
+- Run `ant clean all` to generate model classes.
+- Best practice: Use `deployment` tag properly and modularize itemtypes by extensions.
+
+**Q3. Explain the concept of FlexibleSearch.**
+**A:** FlexibleSearch is Hybris's SQL-like querying language used to query items from the database. It allows joining itemtypes, filtering with conditions, and can use predefined FlexibleSearch queries from `*-flexible-search.xml` files.
+
+---
+
+### Promotions & Pricing
+
+**Q4. How have you customized promotions in Hybris?**
+**A:** I implemented custom promotions where out-of-stock products used contractual prices. I extended rule conditions to include a boolean toggle and stock check logic, ensuring correct pricing based on availability.
+
+**Q5. What are the types of promotions supported?**
+**A:**
+- Order Promotion
+- Product Promotion
+- Shipping Promotion
+- I’ve used rule-based promotions via the Promotions Module in Backoffice.
+
+**Q6. How did you resolve conflicts between promotions and contractual pricing?**
+**A:** By customizing the Promotion Service and priority order in rule evaluation. Added logic to override promotional price with contractual price when stock is unavailable.
+
+---
+
+### Cart & Checkout
+
+**Q7. Describe how cart calculation works.**
+**A:** Cart calculation involves:
+- Price, tax, and promotion calculation
+- Triggered via `CartService.calculate()`
+- Custom hooks or strategies can extend this for special pricing or bundling logic.
+
+**Q8. Have you modified checkout steps?**
+**A:** Yes, added an extra step to verify out-of-stock items and apply fallback pricing. Customized CheckoutFacade and implemented a new step controller.
+
+---
+
+### Order Management & Inventory
+
+**Q9. How does Hybris handle stock?**
+**A:** Hybris uses ATP (Available to Promise) logic. I've integrated external stock systems and implemented a fallback message for OOS items in the cart.
+
+---
+
+### Payment Integration
+
+**Q10. Describe a payment integration you worked on.**
+**A:** Integrated a third-party gateway with dynamic logic based on customer type and cart value. Managed error handling, timeouts, and ensured secure tokenization.
+
+---
+
+### B2B vs B2C
+
+**Q11. Differences in B2B and B2C in Hybris?**
+**A:**
+- B2B includes organization management, approval workflows, cost centers.
+- B2C focuses on promotions, faster checkout, user experience.
+- I’ve worked on both, handling use-cases like B2B quotes and B2C promotions.
+
+---
+
+### WCMS & Backoffice
+
+**Q12. How to create a new CMS component in SmartEdit?**
+**A:**
+- Define component in `items.xml`
+- Create corresponding JSP and controller
+- Register in `cms-components.xml`
+- Add to SmartEdit using a slot and page template
+
+---
+
+### Cronjobs, Business Processes & APIs
+
+**Q13. How do you write a custom cronjob?**
+**A:** Extend `Performable`, configure `cronjob` item in `items.xml`, write logic in `perform()` method, schedule via HAC or Backoffice.
+
+**Q14. Explain a business process used.**
+**A:** Used for sending emails and PDF generation post order confirmation. Modeled in `*-process.xml`, triggered via events, and monitored using Process cockpit.
+
+**Q15. How to expose a custom REST API in Hybris?**
+**A:** Extend existing controller in `occ`, define endpoint, use DTOs, and secure via OAuth or token-based headers.
+
+---
+
