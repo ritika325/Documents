@@ -1,0 +1,60 @@
+**Java Interview Questions for SAP Hybris Role (Senior Consultant - Deloitte)**
+
+---
+
+### 🔹 Core Java
+
+**Q1. What are the main OOP principles in Java?**
+**A:** Encapsulation, Inheritance, Polymorphism, and Abstraction. I apply these when designing models, services, and utilities in Hybris.
+
+**Q2. What’s the difference between `==` and `.equals()` in Java?**
+**A:** `==` checks reference equality, `.equals()` checks object value equality. Crucial when comparing model values or custom DTOs.
+
+**Q3. What is a `HashMap` and how does it work?**
+**A:** It uses hashing to store key-value pairs. Used in Hybris for configurations, attribute mapping, etc.
+
+---
+
+### 🔹 Collections & Multithreading
+
+**Q4. Difference between ArrayList and LinkedList?**
+**A:** ArrayList is faster for index-based access, LinkedList is better for frequent insert/delete.
+
+**Q5. How do you handle concurrency in Java?**
+**A:** Using synchronized blocks, `ReentrantLock`, or concurrent collections like `ConcurrentHashMap`.
+
+**Q6. What is the Executor framework?**
+**A:** Used for managing thread pools. Useful in Hybris cronjobs for async processing.
+
+---
+
+### 🔹 Exception Handling & Streams
+
+**Q7. How do you handle exceptions?**
+**A:** Use try-catch blocks, define custom exceptions, and log properly. In Hybris, I throw `InterceptorException` or `ModelSavingException` based on scenarios.
+
+**Q8. How do Java 8 Streams work?**
+**A:** Streams help process collections in a declarative way using `map()`, `filter()`, `collect()`, etc. Very handy in services for transforming DTOs.
+
+---
+
+### 🔹 Design Patterns & Best Practices
+
+**Q9. What design patterns have you used in projects?**
+**A:** Singleton (for services), Factory (for strategy resolution), Strategy (for dynamic pricing or checkout steps), Builder (for DTOs).
+
+**Q10. What is Dependency Injection? How is it used in Hybris?**
+**A:** It's the process of supplying dependencies via constructor/setter. Spring manages beans in Hybris for services, facades, and controllers.
+
+---
+
+### 🔹 Hybris-Relevant Java Topics
+
+**Q11. How do you handle null values in large-scale applications?**
+**A:** Use `Optional`, null checks, fail-fast validations. Helps prevent NullPointerException in production.
+
+**Q12. How do you debug performance issues in Java services?**
+**A:** Use logs, profilers like VisualVM, analyze DB queries, and identify bottlenecks. In Hybris, I also monitor long-running FlexibleSearch queries.
+
+
+

@@ -1,0 +1,37 @@
+General / Behavioral Questions
+1. Tell us about yourself.
+"Hi, I’m Ritika. I’m a Senior Analyst at Capgemini with over 2 years of experience in SAP Commerce Cloud (Hybris). I’ve worked across both B2B and B2C domains, where I’ve handled a wide range of functionalities including promotions, order management, payment integrations, and backoffice customizations. I’m skilled in Java, SQL, and backend logic, and I’ve led end-to-end feature implementations from requirement analysis to deployment. I recently took on more responsibility, mentoring juniors and driving delivery in client-facing roles. I’m excited about bringing my expertise and enthusiasm to a larger consulting environment like Deloitte."
+
+2. Why do you want to join Deloitte?
+"Deloitte stands out to me for its reputation in consulting excellence, innovative digital transformation projects, and global clientele. I’m particularly interested in how Deloitte blends technology with strategy. Being a part of Deloitte will give me exposure to complex enterprise-level Hybris implementations and help me grow not only as a technologist but also as a consultant. I value collaboration, continuous learning, and impactful delivery—which align well with Deloitte’s culture."
+
+3. Describe a challenging project you worked on.
+"One of the most challenging projects I worked on was when we had to implement a feature that displayed contractual pricing when a product was out of stock. This required modifying the pricing logic to dynamically switch between the promotional price, standard price, or contractual price depending on several conditions like stock availability, cart value, customer type, and whether any coupon codes or promotions were applied.
+
+The biggest challenge was handling conflicts between promotions and contractual pricing, especially in edge cases where a product went out of stock after being added to the cart or when multiple products with mixed availability were checked out together. We also had to ensure that coupon-based discounts didn’t apply incorrectly to out-of-stock items with fixed contractual pricing.
+
+I worked on enhancing the pricing strategy by introducing additional conditions in the promotion engine and customizing the rule evaluation to prioritize contractual logic when applicable. We also created a fallback mechanism to ensure a seamless user experience in case of partial stock availability.
+
+This involved close coordination with the QA and functional teams to validate multiple user flows, and we ran extensive regression testing to ensure that the business logic was reflected correctly across the storefront, checkout, and order confirmation flows. In the end, the feature was delivered successfully and reduced pricing-related issues in out-of-stock scenarios."
+
+4. How do you handle tight deadlines or pressure?
+"When facing tight deadlines, I prioritize clear communication and task breakdown. I typically list out the deliverables, estimate the effort, and identify any bottlenecks early. If required, I adjust the scope with stakeholders or put in extra effort without compromising code quality. I also believe in asking for help when needed—it’s better to collaborate than get stuck."
+
+5. Have you led a team before? What approach did you take?
+"Yes, in my recent project I mentored two junior developers. I used a collaborative approach—started with pair programming, explained business logic, and assigned ownership gradually. I also held short daily check-ins to track progress and offer support. My goal was to ensure they felt confident and grew independently while still meeting project timelines."
+
+✅ Role-Specific (SAP Hybris)
+6. Describe your experience with SAP Hybris. What modules have you worked with?
+"I’ve worked with a variety of Hybris modules including Promotions, WCMS, Payment, Cart, Checkout, Backoffice, and Product Catalog. I’ve built custom business logic in the service layer, extended item types, worked with cronjobs, and handled data modeling using impex. I’ve also worked extensively with the order management flow and email notifications."
+
+7. Have you worked on B2B or B2C projects? What were the key differences?
+"Yes, I’ve worked on both. In B2B, the focus was on company-level pricing, user roles, and approval workflows, whereas in B2C, the emphasis was on personalized promotions, UI/UX, and faster checkouts. B2B also had more complex integrations like punchout and credit limits. Understanding these business differences helped me tailor solutions accordingly."
+
+8. Explain a customization you implemented in Hybris.
+"I customized the checkout flow to support a new payment method integrated via Klarna, called 'Billie' for B2B customers. It involved creating a new checkout step, handling request-response with Klarna APIs, and updating the order model. I ensured it worked with both synchronous and asynchronous flows and added custom error handling for failure cases."
+
+9. How have you handled performance optimization in a Hybris project?
+"I’ve optimized performance by analyzing long-running queries using logs and FlexibleSearch performance analysis. In one case, a product detail page was loading slowly due to deep category hierarchy lookups. I added a caching layer for frequently accessed data and replaced inefficient recursive calls with flattened structures, which reduced load time by 40%."
+
+10. What payment or promotion modules have you integrated?
+"I’ve integrated Adyen and Klarna for payments—handling everything from tokenization, redirect, to success/failure callbacks. For promotions, I’ve worked with rule-based and fixed promotions, created custom rule conditions, and configured them via Backoffice. I’ve also implemented logic to toggle promotions based on inventory availability."
